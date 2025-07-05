@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.name }} - Currículo Cyberpunk</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Orbitron', monospace;
+            line-height: 1.6;
+            color: #00ff41;
+            background: #0a0a0a;
+            padding: 20px;
+            background-image: 
+                radial-gradient(circle at 25% 25%, #ff00ff 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, #00ffff 0%, transparent 50%);
+            background-size: 100px 100px;
+            animation: backgroundShift 10s ease-in-out infinite alternate;
+        }
+        
+        @keyframes backgroundShift {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 
+                0 0 50px rgba(0, 255, 65, 0.3),
+                inset 0 0 50px rgba(255, 0, 255, 0.1);
+            border: 2px solid #00ff41;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+            animation: scan 3s linear infinite;
+        }
+        
+        @keyframes scan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #ff00ff;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            font-weight: 900;
+            color: #00ff41;
+            margin-bottom: 10px;
+            text-shadow: 
+                0 0 10px #00ff41,
+                0 0 20px #00ff41,
+                0 0 30px #00ff41;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 30px #00ff41; }
+            to { text-shadow: 0 0 20px #00ff41, 0 0 30px #00ff41, 0 0 40px #00ff41; }
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #00ffff;
+            text-shadow: 0 0 5px #00ffff;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .section h2 {
+            color: #ff00ff;
+            border-bottom: 2px solid #ff00ff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            text-shadow: 0 0 10px #ff00ff;
+            font-weight: 700;
+        }
+        
+        .professional-summary {
+            background: rgba(255, 0, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ff00ff;
+            border-left: 4px solid #ff00ff;
+            font-style: italic;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        
+        .skill-item {
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            padding: 8px 12px;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: 700;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+            transition: all 0.3s;
+        }
+        
+        .skill-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+        }
+        
+        .project {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff41;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff00ff, #00ffff, #00ff41);
+            animation: borderGlow 2s linear infinite;
+        }
+        
+        @keyframes borderGlow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 10px 30px rgba(0, 255, 65, 0.3),
+                0 0 50px rgba(255, 0, 255, 0.2);
+            border-color: #ff00ff;
+        }
+        
+        .project h3 {
+            color: #00ff41;
+            margin-bottom: 10px;
+            text-shadow: 0 0 5px #00ff41;
+            font-weight: 700;
+        }
+        
+        .project-meta {
+            display: flex;
+            gap: 15px;
+            margin: 10px 0;
+            font-size: 0.9em;
+            color: #00ffff;
+        }
+        
+        .project-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            color: #000;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+        
+        .project-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.2), rgba(0, 255, 255, 0.2));
+            color: #00ff41;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #00ff41;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 900;
+            display: block;
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff;
+        }
+        
+        .languages-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .language-tag {
+            background: linear-gradient(135deg, #00ff41, #00ffff);
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+        }
+        
+        .gamification {
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.2), rgba(0, 255, 255, 0.2));
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #ff00ff;
+            box-shadow: 
+                0 0 30px rgba(255, 0, 255, 0.5),
+                inset 0 0 30px rgba(0, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .level-badge {
+            font-size: 2em;
+            margin: 15px 0;
+            color: #00ff41;
+            text-shadow: 0 0 15px #00ff41;
+            font-weight: 900;
+        }
+        
+        .badges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .badge-item {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .badge-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ff00ff;
+            color: #00ffff;
+            font-style: italic;
+            text-shadow: 0 0 5px #00ffff;
+        }
+        
+        @media print {
+            body { background: white; color: black; }
+            .container { background: white; color: black; box-shadow: none; }
+            * { text-shadow: none !important; box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>{{ user.name }}</h1>
+            <div class="contact-info">
+                {% if user.email %}<div class="contact-item">📧 {{ user.email }}</div>{% endif %}
+                {% if user.location %}<div class="contact-item">📍 {{ user.location }}</div>{% endif %}
+                {% if user.blog %}<div class="contact-item">🌐 {{ user.blog }}</div>{% endif %}
+                {% if user.company %}<div class="contact-item">🏢 {{ user.company }}</div>{% endif %}
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>👨‍💻 PERFIL PROFISSIONAL</h2>
+            <div class="professional-summary">
+                {{ professional_summary }}
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🛠️ HABILIDADES TÉCNICAS</h2>
+            <div class="skills-grid">
+                {% set all_skills = [] %}
+                {% for repo in repositories %}
+                  {% for skill in repo.llm_skills %}
+                    {% if skill not in all_skills %}
+                      {% set _ = all_skills.append(skill) %}
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+                {% for skill in all_skills[:15] %}
+                <div class="skill-item">{{ skill }}</div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🚀 PROJETOS EM DESTAQUE</h2>
+            {% for repo in repositories[:6] %}
+            <div class="project">
+                <h3>{{ repo.llm_title }}</h3>
+                {% if repo.llm_description %}
+                <p>{{ repo.llm_description }}</p>
+                {% endif %}
+                
+                <div class="project-meta">
+                    <span><strong>TECH:</strong> {{ repo.llm_skills | join(', ') }}</span>
+                    {% if repo.stars > 0 %}<span>⭐ {{ repo.stars }}</span>{% endif %}
+                    {% if repo.forks > 0 %}<span>🍴 {{ repo.forks }}</span>{% endif %}
+                </div>
+                
+                {% if repo.llm_achievements %}
+                <div>
+                    <strong>CONQUISTAS:</strong>
+                    <ul>
+                    {% for achievement in repo.llm_achievements %}
+                        <li>{{ achievement }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                
+                <a href="{{ repo.url }}" class="project-link" target="_blank">ACESSAR</a>
+            </div>
+            {% endfor %}
+        </section>
+
+        <section class="section">
+            <h2>📊 ESTATÍSTICAS GITHUB</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">{{ stats.total_repos }}</span>
+                    <span>REPOS</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">{{ stats.total_stars }}</span>
+                    <span>STARS</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">{{ stats.total_forks }}</span>
+                    <span>FORKS</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">{{ stats.followers }}</span>
+                    <span>FOLLOWERS</span>
+                </div>
+            </div>
+            
+            <h3>💻 LINGUAGENS</h3>
+            <div class="languages-list">
+                {% for language, count in stats.languages.items() %}
+                <div class="language-tag">{{ language }} ({{ count }})</div>
+                {% endfor %}
+            </div>
+        </section>
+
+        {% if gamified %}
+        <section class="section">
+            <h2>🎮 CONQUISTAS CYBERPUNK</h2>
+            <div class="gamification">
+                {% set total_points = (stats.total_stars * 10) + (stats.total_forks * 5) + (stats.total_repos * 2) + (stats.languages|length * 15) %}
+                
+                <div class="level-badge">
+                    🎯 {{ total_points }} PONTOS
+                </div>
+                
+                <div class="level-badge">
+                    {% if total_points >= 1000 %}
+                    🏅 🚀 CYBER NINJA MASTER
+                    {% elif total_points >= 500 %}
+                    🏅 ⚡ DIGITAL WARRIOR  
+                    {% elif total_points >= 200 %}
+                    🏅 💻 CODE RUNNER
+                    {% else %}
+                    🏅 🌱 NET ROOKIE
+                    {% endif %}
+                </div>
+                
+                <div class="badges-grid">
+                    <div class="badge-item">
+                        <div>🌟 <strong>STAR HACKER</strong></div>
+                        <div>{{ stats.total_stars }} stars</div>
+                    </div>
+                    <div class="badge-item">
+                        <div>🍴 <strong>FORK MASTER</strong></div>
+                        <div>{{ stats.total_forks }} forks</div>
+                    </div>
+                    <div class="badge-item">
+                        <div>📚 <strong>POLYGLOT CODER</strong></div>
+                        <div>{{ stats.languages|length }} linguagens</div>
+                    </div>
+                    <div class="badge-item">
+                        <div>🚀 <strong>PROJECT ARCHITECT</strong></div>
+                        <div>{{ stats.total_repos }} repositórios</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        <footer class="footer">
+            <p>>>> CURRÍCULO GERADO PELO GITHUB ATS RESUME GENERATOR 🚀 <<<</p>
+        </footer>
+    </div>
+</body>
+</html>

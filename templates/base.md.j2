@@ -1,0 +1,96 @@
+# {{ user.name }}
+
+{% if user.email %}Email: {{ user.email }}{% endif %}
+{% if user.location %}Localização: {{ user.location }}{% endif %}
+{% if user.blog %}Website: {{ user.blog }}{% endif %}
+{% if user.company %}Empresa: {{ user.company }}{% endif %}
+
+---
+
+## Perfil Profissional
+
+{{ professional_summary }}
+
+---
+
+## Habilidades Técnicas
+
+{% set all_skills = [] %}
+{% for repo in repositories %}
+  {% for skill in repo.llm_skills %}
+    {% if skill not in all_skills %}
+      {% set _ = all_skills.append(skill) %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{% for skill in all_skills[:15] %}
+- {{ skill }}
+{% endfor %}
+
+---
+
+## Projetos em Destaque
+
+{% for repo in repositories[:8] %}
+### {{ repo.llm_title }}
+{% if repo.llm_description %}
+{{ repo.llm_description }}
+{% endif %}
+
+**Tecnologias:** {{ repo.llm_skills | join(', ') }}
+{% if repo.stars > 0 %}**Stars:** {{ repo.stars }}{% endif %}
+{% if repo.forks > 0 %}**Forks:** {{ repo.forks }}{% endif %}
+{% if repo.llm_achievements %}
+**Conquistas:**
+{% for achievement in repo.llm_achievements %}
+- {{ achievement }}
+{% endfor %}
+{% endif %}
+
+[Ver projeto]({{ repo.url }})
+
+---
+{% endfor %}
+
+## Estatísticas GitHub
+
+- **Repositórios:** {{ stats.total_repos }}
+- **Total de Stars:** {{ stats.total_stars }}
+- **Total de Forks:** {{ stats.total_forks }}
+- **Seguidores:** {{ stats.followers }}
+
+### Linguagens Mais Utilizadas
+{% for language, count in stats.languages.items() %}
+- **{{ language }}:** {{ count }} repositórios
+{% endfor %}
+
+---
+
+{% if gamified %}
+## Conquistas de Desenvolvedor
+
+{% set total_points = (stats.total_stars * 10) + (stats.total_forks * 5) + (stats.total_repos * 2) + (stats.languages|length * 15) %}
+
+**Pontuação Total:** {{ total_points }} pontos
+
+{% if total_points >= 1000 %}
+**Nível:** Ninja Master
+{% elif total_points >= 500 %}
+**Nível:** Code Warrior
+{% elif total_points >= 200 %}
+**Nível:** Script Kiddie
+{% else %}
+**Nível:** Padawan Developer
+{% endif %}
+
+### Badges Conquistados
+- **Star Collector** ({{ stats.total_stars }} stars)
+- **Fork Master** ({{ stats.total_forks }} forks)
+- **Polyglot** ({{ stats.languages|length }} linguagens)
+- **Project Creator** ({{ stats.total_repos }} repositórios)
+
+---
+{% endif %}
+
+*Currículo gerado automaticamente pelo GitHub ATS Resume Generator*
