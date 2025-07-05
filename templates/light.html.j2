@@ -4,357 +4,257 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ user.name }} - Currículo</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
-            padding: 20px;
+            background-color: #f8f9fa;
         }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+
+        .custom-blue {
+            background-color: #007bff !important;
         }
-        
-        .header {
-            text-align: center;
-            border-bottom: 3px solid #007bff;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
+
+        .custom-light-blue {
+            background-color: #e3f2fd !important;
         }
-        
-        .header h1 {
-            font-size: 2.5em;
-            color: #007bff;
-            margin-bottom: 10px;
+
+        .text-blue {
+            color: #007bff !important;
         }
-        
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 15px;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            color: #666;
-        }
-        
-        .section {
-            margin-bottom: 30px;
-        }
-        
-        .section h2 {
-            color: #007bff;
-            border-bottom: 2px solid #e9ecef;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-        }
-        
-        .professional-summary {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #007bff;
-            font-style: italic;
-        }
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-        }
-        
-        .skill-item {
-            background: #e3f2fd;
-            padding: 8px 12px;
-            border-radius: 20px;
-            text-align: center;
-            font-weight: 500;
-            color: #1976d2;
-        }
-        
-        .project {
-            background: #fff;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            transition: transform 0.2s;
-        }
-        
-        .project:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        .project h3 {
-            color: #007bff;
-            margin-bottom: 10px;
-        }
-        
-        .project-meta {
-            display: flex;
-            gap: 15px;
-            margin: 10px 0;
-            font-size: 0.9em;
-            color: #666;
-        }
-        
-        .project-link {
+
+        .skill-tag {
             display: inline-block;
-            background: #007bff;
-            color: white;
-            padding: 8px 16px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-            transition: background 0.2s;
+            margin: 2px;
         }
-        
-        .project-link:hover {
-            background: #0056b3;
+
+        .project-card {
+            margin-bottom: 16px;
         }
-        
+
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .stat-card {
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 2em;
-            font-weight: bold;
-            display: block;
-        }
-        
-        .languages-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .language-tag {
-            background: #28a745;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.9em;
-        }
-        
-        .gamification {
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            padding: 25px;
-            border-radius: 10px;
-            text-align: center;
-            color: #333;
-        }
-        
-        .level-badge {
-            font-size: 1.5em;
-            margin: 10px 0;
-        }
-        
-        .badges-grid {
-            display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .badge-item {
-            background: rgba(255,255,255,0.9);
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-        }
-        
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #e9ecef;
-            color: #666;
-            font-style: italic;
-        }
-        
-        @media print {
-            body { background: white; padding: 0; }
-            .container { box-shadow: none; }
-            .project:hover { transform: none; }
+            gap: 16px;
+            margin: 16px 0;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>{{ user.name }}</h1>
-            <div class="contact-info">
-                {% if user.email %}<div class="contact-item">📧 {{ user.email }}</div>{% endif %}
-                {% if user.location %}<div class="contact-item">📍 {{ user.location }}</div>{% endif %}
-                {% if user.blog %}<div class="contact-item">🌐 {{ user.blog }}</div>{% endif %}
-                {% if user.company %}<div class="contact-item">🏢 {{ user.company }}</div>{% endif %}
-            </div>
-        </header>
+    <div class="w3-container w3-margin-top">
+        <div class="w3-card-4 w3-white w3-margin-bottom" style="max-width: 900px; margin: 0 auto;">
 
-        <section class="section">
-            <h2>👨‍💻 Perfil Profissional</h2>
-            <div class="professional-summary">
-                {{ professional_summary }}
-            </div>
-        </section>
-
-        <section class="section">
-            <h2>🛠️ Habilidades Técnicas</h2>
-            <div class="skills-grid">
-                {% set all_skills = [] %}
-                {% for repo in repositories %}
-                  {% for skill in repo.llm_skills %}
-                    {% if skill not in all_skills %}
-                      {% set _ = all_skills.append(skill) %}
+            <!-- Header -->
+            <header class="w3-container custom-blue w3-center w3-padding-32">
+                <h1 class="w3-jumbo w3-margin-bottom">{{ user.name }}</h1>
+                <div class="w3-row w3-margin-top">
+                    {% if user.email %}
+                    <div class="w3-col s12 m6 l3 w3-margin-bottom">
+                        <i class="fa fa-envelope w3-margin-right"></i>{{ user.email }}
+                    </div>
                     {% endif %}
-                  {% endfor %}
-                {% endfor %}
-                {% for skill in all_skills[:15] %}
-                <div class="skill-item">{{ skill }}</div>
-                {% endfor %}
-            </div>
-        </section>
-
-        <section class="section">
-            <h2>🚀 Projetos em Destaque</h2>
-            {% for repo in repositories[:6] %}
-            <div class="project">
-                <h3>{{ repo.llm_title }}</h3>
-                {% if repo.llm_description %}
-                <p>{{ repo.llm_description }}</p>
-                {% endif %}
-                
-                <div class="project-meta">
-                    <span><strong>Tecnologias:</strong> {{ repo.llm_skills | join(', ') }}</span>
-                    {% if repo.stars > 0 %}<span>⭐ {{ repo.stars }}</span>{% endif %}
-                    {% if repo.forks > 0 %}<span>🍴 {{ repo.forks }}</span>{% endif %}
+                    {% if user.location %}
+                    <div class="w3-col s12 m6 l3 w3-margin-bottom">
+                        <i class="fa fa-map-marker w3-margin-right"></i>{{ user.location }}
+                    </div>
+                    {% endif %}
+                    {% if user.blog %}
+                    <div class="w3-col s12 m6 l3 w3-margin-bottom">
+                        <i class="fa fa-globe w3-margin-right"></i>{{ user.blog }}
+                    </div>
+                    {% endif %}
+                    {% if user.company %}
+                    <div class="w3-col s12 m6 l3 w3-margin-bottom">
+                        <i class="fa fa-building w3-margin-right"></i>{{ user.company }}
+                    </div>
+                    {% endif %}
                 </div>
-                
-                {% if repo.llm_achievements %}
-                <div>
-                    <strong>Conquistas:</strong>
-                    <ul>
-                    {% for achievement in repo.llm_achievements %}
-                        <li>{{ achievement }}</li>
+            </header>
+
+            <!-- Professional Summary -->
+            <div class="w3-container w3-padding-32">
+                <h2 class="w3-text-blue w3-border-bottom w3-border-blue w3-padding-bottom">
+                    <i class="fa fa-user w3-margin-right"></i>Perfil Profissional
+                </h2>
+                <div class="w3-panel custom-light-blue w3-leftbar w3-border-blue">
+                    <p class="w3-large">{{ professional_summary }}</p>
+                </div>
+            </div>
+
+            <!-- Technical Skills -->
+            <div class="w3-container w3-padding-32">
+                <h2 class="w3-text-blue w3-border-bottom w3-border-blue w3-padding-bottom">
+                    <i class="fa fa-cogs w3-margin-right"></i>Habilidades Técnicas
+                </h2>
+                <div class="w3-row">
+                    {% set all_skills = [] %}
+                    {% for repo in repositories %}
+                      {% for skill in repo.llm_skills %}
+                        {% if skill not in all_skills %}
+                          {% set _ = all_skills.append(skill) %}
+                        {% endif %}
+                      {% endfor %}
                     {% endfor %}
-                    </ul>
-                </div>
-                {% endif %}
-                
-                <a href="{{ repo.url }}" class="project-link" target="_blank">Ver Projeto</a>
-            </div>
-            {% endfor %}
-        </section>
 
-        <section class="section">
-            <h2>📊 Estatísticas GitHub</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-number">{{ stats.total_repos }}</span>
-                    <span>Repositórios</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">{{ stats.total_stars }}</span>
-                    <span>Total Stars</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">{{ stats.total_forks }}</span>
-                    <span>Total Forks</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">{{ stats.followers }}</span>
-                    <span>Seguidores</span>
+                    {% for skill in all_skills[:15] %}
+                    <span class="w3-tag w3-blue w3-margin-right w3-margin-bottom skill-tag">{{ skill }}</span>
+                    {% endfor %}
                 </div>
             </div>
-            
-            <h3>💻 Linguagens Mais Utilizadas</h3>
-            <div class="languages-list">
-                {% for language, count in stats.languages.items() %}
-                <div class="language-tag">{{ language }} ({{ count }})</div>
+
+            <!-- Featured Projects -->
+            <div class="w3-container w3-padding-32">
+                <h2 class="w3-text-blue w3-border-bottom w3-border-blue w3-padding-bottom">
+                    <i class="fa fa-rocket w3-margin-right"></i>Projetos em Destaque
+                </h2>
+
+                {% for repo in repositories[:8] %}
+                <div class="w3-card w3-margin-bottom project-card">
+                    <div class="w3-container w3-padding">
+                        <h3 class="w3-text-blue">{{ repo.llm_title }}</h3>
+                        {% if repo.llm_description %}
+                        <p>{{ repo.llm_description }}</p>
+                        {% endif %}
+
+                        <div class="w3-margin-top">
+                            <strong>Tecnologias:</strong>
+                            {% for skill in repo.llm_skills %}
+                            <span class="w3-tag w3-light-blue w3-small w3-margin-right">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+
+                        <div class="w3-row w3-margin-top">
+                            {% if repo.stars > 0 %}
+                            <div class="w3-col s6 m4">
+                                <i class="fa fa-star w3-text-yellow"></i> {{ repo.stars }} Stars
+                            </div>
+                            {% endif %}
+                            {% if repo.forks > 0 %}
+                            <div class="w3-col s6 m4">
+                                <i class="fa fa-code-fork w3-text-green"></i> {{ repo.forks }} Forks
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        {% if repo.llm_achievements %}
+                        <div class="w3-margin-top">
+                            <strong>Conquistas:</strong>
+                            <ul class="w3-ul">
+                                {% for achievement in repo.llm_achievements %}
+                                <li>{{ achievement }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+
+                        <a href="{{ repo.url }}" class="w3-button w3-blue w3-margin-top" target="_blank">
+                            <i class="fa fa-external-link"></i> Ver Projeto
+                        </a>
+                    </div>
+                </div>
                 {% endfor %}
             </div>
-        </section>
+            <!-- GitHub Statistics -->
+            <div class="w3-container w3-padding-32">
+                <h2 class="w3-text-blue w3-border-bottom w3-border-blue w3-padding-bottom">
+                    <i class="fa fa-bar-chart w3-margin-right"></i>Estatísticas GitHub
+                </h2>
 
-        {% if gamified %}
-        <section class="section">
-            <h2>🎮 Conquistas de Desenvolvedor</h2>
-            <div class="gamification">
+                <div class="stats-grid">
+                    <div class="w3-card w3-center w3-padding custom-blue w3-text-white">
+                        <h3>{{ stats.total_repos }}</h3>
+                        <p>Repositórios</p>
+                    </div>
+                    <div class="w3-card w3-center w3-padding custom-blue w3-text-white">
+                        <h3>{{ stats.total_stars }}</h3>
+                        <p>Total Stars</p>
+                    </div>
+                    <div class="w3-card w3-center w3-padding custom-blue w3-text-white">
+                        <h3>{{ stats.total_forks }}</h3>
+                        <p>Total Forks</p>
+                    </div>
+                    <div class="w3-card w3-center w3-padding custom-blue w3-text-white">
+                        <h3>{{ stats.followers }}</h3>
+                        <p>Seguidores</p>
+                    </div>
+                </div>
+
+                <h3 class="w3-text-blue w3-margin-top">
+                    <i class="fa fa-code w3-margin-right"></i>Linguagens Mais Utilizadas
+                </h3>
+                <div class="w3-row">
+                    {% for language, count in stats.languages.items() %}
+                    <span class="w3-tag w3-green w3-margin-right w3-margin-bottom">{{ language }} ({{ count }})</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% if gamified %}
+            <!-- Gamification Section -->
+            <div class="w3-container w3-padding-32">
+                <h2 class="w3-text-blue w3-border-bottom w3-border-blue w3-padding-bottom">
+                    <i class="fa fa-trophy w3-margin-right"></i>Conquistas de Desenvolvedor
+                </h2>
+
                 {% set total_points = (stats.total_stars * 10) + (stats.total_forks * 5) + (stats.total_repos * 2) + (stats.languages|length * 15) %}
-                
-                <div class="level-badge">
-                    🎯 <strong>{{ total_points }} pontos</strong>
+
+                <div class="w3-panel w3-yellow w3-center w3-padding-large">
+                    <h3><i class="fa fa-target"></i> {{ total_points }} pontos</h3>
+
+                    <h4>
+                        {% if total_points >= 1000 %}
+                        <i class="fa fa-star"></i> Ninja Master
+                        {% elif total_points >= 500 %}
+                        <i class="fa fa-bolt"></i> Code Warrior
+                        {% elif total_points >= 200 %}
+                        <i class="fa fa-laptop"></i> Script Kiddie
+                        {% else %}
+                        <i class="fa fa-leaf"></i> Padawan Developer
+                        {% endif %}
+                    </h4>
                 </div>
-                
-                <div class="level-badge">
-                    {% if total_points >= 1000 %}
-                    🏅 🚀 Ninja Master
-                    {% elif total_points >= 500 %}
-                    🏅 ⚡ Code Warrior  
-                    {% elif total_points >= 200 %}
-                    🏅 💻 Script Kiddie
-                    {% else %}
-                    🏅 🌱 Padawan Developer
-                    {% endif %}
-                </div>
-                
-                <div class="badges-grid">
-                    <div class="badge-item">
-                        <div>🌟 <strong>Star Collector</strong></div>
-                        <div>{{ stats.total_stars }} stars</div>
+
+                <div class="w3-row-padding w3-margin-top">
+                    <div class="w3-col s12 m6 l3">
+                        <div class="w3-card w3-center w3-padding">
+                            <i class="fa fa-star w3-text-yellow w3-large"></i>
+                            <h4>Star Collector</h4>
+                            <p>{{ stats.total_stars }} stars</p>
+                        </div>
                     </div>
-                    <div class="badge-item">
-                        <div>🍴 <strong>Fork Master</strong></div>
-                        <div>{{ stats.total_forks }} forks</div>
+                    <div class="w3-col s12 m6 l3">
+                        <div class="w3-card w3-center w3-padding">
+                            <i class="fa fa-code-fork w3-text-green w3-large"></i>
+                            <h4>Fork Master</h4>
+                            <p>{{ stats.total_forks }} forks</p>
+                        </div>
                     </div>
-                    <div class="badge-item">
-                        <div>📚 <strong>Polyglot</strong></div>
-                        <div>{{ stats.languages|length }} linguagens</div>
+                    <div class="w3-col s12 m6 l3">
+                        <div class="w3-card w3-center w3-padding">
+                            <i class="fa fa-book w3-text-blue w3-large"></i>
+                            <h4>Polyglot</h4>
+                            <p>{{ stats.languages|length }} linguagens</p>
+                        </div>
                     </div>
-                    <div class="badge-item">
-                        <div>🚀 <strong>Project Creator</strong></div>
-                        <div>{{ stats.total_repos }} repositórios</div>
+                    <div class="w3-col s12 m6 l3">
+                        <div class="w3-card w3-center w3-padding">
+                            <i class="fa fa-rocket w3-text-red w3-large"></i>
+                            <h4>Project Creator</h4>
+                            <p>{{ stats.total_repos }} repositórios</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-        {% endif %}
+            {% endif %}
 
-        <footer class="footer">
-            <p>Currículo gerado automaticamente pelo GitHub ATS Resume Generator 🚀</p>
-        </footer>
+            <!-- Footer -->
+            <footer class="w3-container w3-center w3-padding-32 w3-light-grey">
+                <p class="w3-text-grey">
+                    <i class="fa fa-code"></i> Currículo gerado automaticamente pelo GitHub ATS Resume Generator
+                </p>
+            </footer>
+        </div>
     </div>
 </body>
 </html>

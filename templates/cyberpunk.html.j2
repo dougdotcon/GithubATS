@@ -4,160 +4,210 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ user.name }} - Currículo Cyberpunk</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
             font-family: 'Orbitron', monospace;
-            line-height: 1.6;
-            color: #00ff41;
             background: #0a0a0a;
-            padding: 20px;
-            background-image: 
+            color: #00ff41;
+            background-image:
                 radial-gradient(circle at 25% 25%, #ff00ff 0%, transparent 50%),
                 radial-gradient(circle at 75% 75%, #00ffff 0%, transparent 50%);
             background-size: 100px 100px;
             animation: backgroundShift 10s ease-in-out infinite alternate;
         }
-        
+
         @keyframes backgroundShift {
             0% { background-position: 0% 0%; }
             100% { background-position: 100% 100%; }
         }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 
-                0 0 50px rgba(0, 255, 65, 0.3),
-                inset 0 0 50px rgba(255, 0, 255, 0.1);
-            border: 2px solid #00ff41;
-            position: relative;
-            overflow: hidden;
+
+        .cyber-container {
+            background: rgba(0, 0, 0, 0.9) !important;
+            border: 2px solid #00ff41 !important;
+            box-shadow: 0 0 50px rgba(0, 255, 65, 0.3) !important;
         }
-        
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
-            animation: scan 3s linear infinite;
+
+        .cyber-header {
+            background: linear-gradient(45deg, #ff00ff, #00ffff) !important;
+            color: #000 !important;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
-        
-        @keyframes scan {
-            0% { left: -100%; }
-            100% { left: 100%; }
+
+        .cyber-green {
+            background-color: #00ff41 !important;
+            color: #000 !important;
         }
-        
-        .header {
-            text-align: center;
-            border-bottom: 3px solid #ff00ff;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-            position: relative;
+
+        .cyber-pink {
+            background-color: #ff00ff !important;
+            color: #fff !important;
         }
-        
-        .header h1 {
-            font-size: 3em;
-            font-weight: 900;
-            color: #00ff41;
-            margin-bottom: 10px;
-            text-shadow: 
-                0 0 10px #00ff41,
-                0 0 20px #00ff41,
-                0 0 30px #00ff41;
-            animation: glow 2s ease-in-out infinite alternate;
+
+        .cyber-cyan {
+            background-color: #00ffff !important;
+            color: #000 !important;
         }
-        
-        @keyframes glow {
-            from { text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 30px #00ff41; }
-            to { text-shadow: 0 0 20px #00ff41, 0 0 30px #00ff41, 0 0 40px #00ff41; }
+
+        .text-cyber-green {
+            color: #00ff41 !important;
         }
-        
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 15px;
+
+        .text-cyber-pink {
+            color: #ff00ff !important;
         }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            color: #00ffff;
-            text-shadow: 0 0 5px #00ffff;
+
+        .text-cyber-cyan {
+            color: #00ffff !important;
         }
-        
-        .section {
-            margin-bottom: 30px;
-            position: relative;
+
+        .cyber-card {
+            background: rgba(0, 0, 0, 0.8) !important;
+            border: 1px solid #00ff41 !important;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2) !important;
         }
-        
-        .section h2 {
-            color: #ff00ff;
-            border-bottom: 2px solid #ff00ff;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-            text-shadow: 0 0 10px #ff00ff;
-            font-weight: 700;
+
+        .cyber-glow {
+            text-shadow: 0 0 10px currentColor;
         }
-        
-        .professional-summary {
-            background: rgba(255, 0, 255, 0.1);
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #ff00ff;
-            border-left: 4px solid #ff00ff;
-            font-style: italic;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+
+        .skill-tag {
+            display: inline-block;
+            margin: 2px;
         }
-        
-        .skills-grid {
+
+        .project-card {
+            margin-bottom: 16px;
+        }
+
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
+            gap: 16px;
+            margin: 16px 0;
         }
-        
-        .skill-item {
-            background: linear-gradient(135deg, #ff00ff, #00ffff);
-            padding: 8px 12px;
-            border-radius: 20px;
-            text-align: center;
-            font-weight: 700;
-            color: #000;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
-            transition: all 0.3s;
+        @keyframes glow {
+            from { text-shadow: 0 0 10px currentColor; }
+            to { text-shadow: 0 0 20px currentColor; }
         }
-        
-        .skill-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
-        }
-        
-        .project {
-            background: rgba(0, 0, 0, 0.8);
-            border: 2px solid #00ff41;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            transition: all 0.3s;
+    </style>
+</head>
+<body>
+    <div class="w3-container w3-margin-top">
+        <div class="w3-card-4 cyber-container w3-margin-bottom" style="max-width: 900px; margin: 0 auto;">
+
+            <!-- Header -->
+            <header class="w3-container cyber-header w3-center w3-padding-32">
+                <h1 class="w3-jumbo w3-margin-bottom cyber-glow" style="animation: glow 2s ease-in-out infinite alternate;">{{ user.name }}</h1>
+                <div class="w3-row w3-margin-top">
+                    {% if user.email %}
+                    <div class="w3-col s12 m6 l3 w3-margin-bottom text-cyber-cyan">
+                        <i class="fa fa-envelope w3-margin-right"></i>{{ user.email }}
+                    </div>
+                    {% endif %}
+                    {% if user.location %}
+                    <div class="w3-col s12 m6 l3 w3-margin-bottom text-cyber-cyan">
+                        <i class="fa fa-map-marker w3-margin-right"></i>{{ user.location }}
+                    </div>
+                    {% endif %}
+                    {% if user.blog %}
+                    <div class="w3-col s12 m6 l3 w3-margin-bottom text-cyber-cyan">
+                        <i class="fa fa-globe w3-margin-right"></i>{{ user.blog }}
+                    </div>
+                    {% endif %}
+                    {% if user.company %}
+                    <div class="w3-col s12 m6 l3 w3-margin-bottom text-cyber-cyan">
+                        <i class="fa fa-building w3-margin-right"></i>{{ user.company }}
+                    </div>
+                    {% endif %}
+                </div>
+            </header>
+
+            <!-- Professional Summary -->
+            <div class="w3-container w3-padding-32">
+                <h2 class="text-cyber-pink w3-border-bottom w3-border-pink w3-padding-bottom cyber-glow">
+                    <i class="fa fa-user w3-margin-right"></i>PERFIL PROFISSIONAL
+                </h2>
+                <div class="w3-panel cyber-card w3-leftbar w3-border-pink">
+                    <p class="w3-large">{{ professional_summary }}</p>
+                </div>
+            </div>
+
+            <!-- Technical Skills -->
+            <div class="w3-container w3-padding-32">
+                <h2 class="text-cyber-pink w3-border-bottom w3-border-pink w3-padding-bottom cyber-glow">
+                    <i class="fa fa-cogs w3-margin-right"></i>HABILIDADES TÉCNICAS
+                </h2>
+                <div class="w3-row">
+                    {% set all_skills = [] %}
+                    {% for repo in repositories %}
+                      {% for skill in repo.llm_skills %}
+                        {% if skill not in all_skills %}
+                          {% set _ = all_skills.append(skill) %}
+                        {% endif %}
+                      {% endfor %}
+                    {% endfor %}
+
+                    {% for skill in all_skills[:15] %}
+                    <span class="w3-tag cyber-pink w3-margin-right w3-margin-bottom skill-tag" style="text-transform: uppercase; letter-spacing: 1px;">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Featured Projects -->
+            <div class="w3-container w3-padding-32">
+                <h2 class="text-cyber-pink w3-border-bottom w3-border-pink w3-padding-bottom cyber-glow">
+                    <i class="fa fa-rocket w3-margin-right"></i>PROJETOS EM DESTAQUE
+                </h2>
+
+                {% for repo in repositories[:8] %}
+                <div class="w3-card cyber-card project-card">
+                    <div class="w3-container w3-padding">
+                        <h3 class="text-cyber-green cyber-glow">{{ repo.llm_title }}</h3>
+                        {% if repo.llm_description %}
+                        <p>{{ repo.llm_description }}</p>
+                        {% endif %}
+
+                        <div class="w3-margin-top">
+                            <strong class="text-cyber-cyan">TECNOLOGIAS:</strong>
+                            {% for skill in repo.llm_skills %}
+                            <span class="w3-tag cyber-cyan w3-small w3-margin-right" style="text-transform: uppercase;">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+
+                        <div class="w3-row w3-margin-top">
+                            {% if repo.stars > 0 %}
+                            <div class="w3-col s6 m4 text-cyber-green">
+                                <i class="fa fa-star"></i> {{ repo.stars }} STARS
+                            </div>
+                            {% endif %}
+                            {% if repo.forks > 0 %}
+                            <div class="w3-col s6 m4 text-cyber-cyan">
+                                <i class="fa fa-code-fork"></i> {{ repo.forks }} FORKS
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        {% if repo.llm_achievements %}
+                        <div class="w3-margin-top">
+                            <strong class="text-cyber-pink">CONQUISTAS:</strong>
+                            <ul class="w3-ul">
+                                {% for achievement in repo.llm_achievements %}
+                                <li>{{ achievement }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+
+                        <a href="{{ repo.url }}" class="w3-button cyber-green w3-margin-top" target="_blank" style="text-transform: uppercase; letter-spacing: 1px;">
+                            <i class="fa fa-external-link"></i> ACESSAR
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
             position: relative;
             overflow: hidden;
         }
